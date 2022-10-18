@@ -1,47 +1,34 @@
 import React, { useEffect } from 'react'
 
-
+// import {axios} from 'react'
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; 
+import axios from 'axios'
 function User1() {
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    setUsers([
-      {
-        id: 1,
-        username: "maneesh",
-        email: "rmaneesh2dagmail.com",
-        phoneNumber: 1234567,
-        country: "india",
-        state: "tamilnadu",
-        dob: '28-05-1993',
-        gender: "male"
-
-      },
-      {
-        id: 2,
-        username: "maneeshrajan",
-        email: "rmaneesh2dagmail.com",
-        phoneNumber: 1234567,
-        country: "india",
-        state: "tamilnadu",
-        dob: '28-05-1993',
-        gender: "male"
-
-      },
-      {
-        id: 3,
-        username: "kumari",
-        email: "rmaneesh2dagmail.com",
-        phoneNumber: 1234567,
-        country: "india",
-        state: "tamilnadu",
-        dob: '28-05-1993',
-        gender: "male"
-
-      }
-    ])
+    
+      fetchData()
   }, [])
+
+  let fetchData=async()=>{
+      try{
+        const users=await axios.get("https://634e58784af5fdff3a594df5.mockapi.io/api/students")
+        console.log(users)
+        setUsers(users.data)
+      }catch(error){
+        alert("Error")
+      }
+    
+  }
+      let deleteUser=()=>{
+         const result=window.confirm("are you sure you want to delete")
+        if(result){
+          alert("deleted")
+        }
+      }
+  
+      
   return (
     <div class="container-fluid">
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -60,11 +47,11 @@ function User1() {
               <tr>
                 <th>id</th>
                 <th>Name</th>
-                <th>email</th>
+                <th>roll no.</th>
                 <th>phoneNumber</th>
-                <th>country</th>
+                
                 <th>State</th>
-                <th>dob</th>
+                <th>city</th>
                 <th>gender</th>
                 <th>Action</th>
               </tr>
@@ -73,11 +60,11 @@ function User1() {
               <tr>
                 <th>id</th>
                 <th>Name</th>
-                <th>email</th>
+                <th>roll no.</th>
                 <th>phoneNumber</th>
-                <th>country</th>
+                
                 <th>State</th>
-                <th>dob</th>
+                <th>city</th>
                 <th>gender</th>
                 <th>Action</th>
               </tr>
@@ -88,17 +75,17 @@ function User1() {
               {users.map((user) => {
                 return <tr>
                   <td>{user.id}</td>
-                  <td>{user.username}</td>
-                  <td>{user.email}</td>
-                  <td>{user.phoneNumber}</td>
-                  <td>{user.country}</td>
+                  <td>{user.Name}</td>
+                  <td>{user.age}</td>
+                  <td>{user.phonenumber}</td>
+                 
                   <td>{user.state}</td>
-                  <td>{user.dob}</td>
+                  <td>{user.city}</td>
                   <td>{user.gender}</td>
                   
                   <td>
-                    <Link to={`{\User1\${user.id}`} className="btn btn-warning mr-2">view</Link>
-                    <Link to={`{\Edituser\${user.id}`} className="btn btn-primary mr-2" >Edit</Link>
+                    <Link to={`/User1/${user.id}`} className="btn btn-warning mr-2">view</Link>
+                    <Link to={`/Edituser/${user.id}`} className="btn btn-primary mr-2 " >Edit</Link>
                     <button className='btn btn-danger'>Delete</button>
                     </td>
                 </tr>

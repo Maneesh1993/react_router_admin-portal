@@ -33,7 +33,7 @@ function sidebar() {
                 <Link class="nav-link collapsed" to={"/User1"} data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>User1</span>
+                    <span>Student</span>
                 </Link>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
